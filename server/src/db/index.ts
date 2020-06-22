@@ -1,6 +1,3 @@
-console.log("#################################")
-console.log(process.env)
-console.log("#################################")
 
 const knex = require('knex')({
     client: 'pg',
@@ -13,5 +10,3 @@ const knex = require('knex')({
       ssl: true
     }
   });
-
-export default knex
