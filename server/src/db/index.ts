@@ -1,6 +1,7 @@
 
 const knex = require('knex')({
     client: 'pg',
+    rejectUnauthorized: true,
     connection: {
       host: "ec2-52-7-39-178.compute-1.amazonaws.com",
       port: "5432",
@@ -10,3 +11,5 @@ const knex = require('knex')({
       ssl: true
     }
   });
+
+  export default knex

@@ -15,8 +15,12 @@ module.exports = {
         database: "dder50rg2ib5c3",
         ssl: true
     },
+    rejectUnauthorized: true,
     searchPath: ['public'],
     migrations: {
         directory: path.resolve(__dirname, 'src', 'db', 'migrations')
+    },
+    seeds: {
+        directory: path.resolve(__dirname, 'src', 'db', 'seeds')
     }
 }
