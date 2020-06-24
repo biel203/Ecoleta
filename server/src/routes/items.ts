@@ -10,19 +10,15 @@ routes.get('/', async (req, res) => {
 
     try {
         const items = await knex('items').select('*');
-        console.log(process.env)
         const serializedItems = items.map((item: Item) => ({
-        title: item.title,
-        image_url: ``
-    }))
+            id: item.id,
+            title: item.title,
+            image_url: `http://localhost:3333/public/images/${item.image}`
+        }))
 
         return res.json(serializedItems);
 
     } catch (err) {
-
-        console.log("#########################")
-        console.log("DEU ERRO ")
-        console.log("#########################")
         console.log(err)
     }
 });
