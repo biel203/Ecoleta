@@ -34,6 +34,8 @@ class PointsController {
         }))
     
         await trx('point_items').insert(pointItems);
+
+        await trx.commit();
     
         return res.status(200).json({
             message: 'Registrado com sucesso!',
@@ -42,6 +44,28 @@ class PointsController {
             ...point
             }
         });
+    }
+
+    async index(req: Request, res: Response) {
+        const { city, uf,  items } = req.query;
+
+        
+
+        const parsedItems = !items ? [] : String(items)
+        .split(',')
+        .map(item => Number(item.trim()));
+
+        const points = await knex('points')
+        .join('point_items', 'points.id', '=', 'point_items.points_id')
+        .whereIn('point_items.item_id', parsedItems)
+        .where('city', String(city))
+        .where('uf', String(uf))
+        .distinct()
+        .select('points.*');
+
+        return res
+        .status(200)
+        .json(points)
     }
 
     async show(req: Request, res: Response) {

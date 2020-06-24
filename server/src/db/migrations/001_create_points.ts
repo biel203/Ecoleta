@@ -14,4 +14,4 @@ knex.schema.createTable('points', table => {
 });
 
 export const down = (knex: Knex) => 
-knex.schema.dropTable('point');
+knex.schema.dropTable('points');
